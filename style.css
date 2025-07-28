@@ -11,6 +11,10 @@
   to { transform: rotate(360deg); }
 }
 
+@keyframes fadeIn {
+  50% { filter: brightness(1.75); }
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -35,8 +39,10 @@ main {
 
 .background {
   position: absolute;
+  width: 65vw;
+  height: 65vw;
   z-index: -1;
-  animation: spin 4s linear infinite;
+  animation: spin 4s linear infinite, fadeIn 2s ease-in-out infinite;
 }
 
 .logo {
@@ -48,16 +54,35 @@ main {
   background-image: url("assets/images/LOGO_TLDS_TRANSPARENT.png");
   background-size: 50% auto;
   background-position: center;
+  background-repeat: no-repeat;
+}
+
+.logo::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #000;
+  -webkit-mask: 
+    linear-gradient(to right, #000 25.5%, transparent 25.5%, transparent 75%, #000 75%),
+    linear-gradient(to bottom, #000 calc(50vh - 3.9vw), transparent calc(50vh - 3.9vw), transparent calc(50vh + 3.9vw), #000 calc(50vh + 3.9vw));
+  mask: 
+    linear-gradient(to right, #000 25.5%, transparent 25.5%, transparent 75%, #000 75%),
+    linear-gradient(to bottom, #000 calc(50vh - 3.9vw), transparent calc(50vh - 3.9vw), transparent calc(50vh + 3.9vw), #000 calc(50vh + 3.9vw));
+  pointer-events: none;
 }
 
 .email {
   font-size: 1rem;
   font-weight: 400;
   position: absolute;
-  bottom: 0;
+  bottom: 30%;
   left: 0;
   width: 100%;
   padding: 1rem;
+  box-sizing: border-box;
   background-color: #000;
   color: #FFF;
   text-align: center;
