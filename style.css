@@ -87,5 +87,6 @@ main {
   color: #FFF;
   text-align: center;
   text-decoration: none;
+  word-break: break-all;
   cursor: pointer;
 }
